@@ -1,12 +1,13 @@
 @extends('layouts.master')
-@section('about')
+@section('offer')
 <div class="content">
     <h1 class="title m-b-md" style="text-align: center; color: #003c64 ">
         Add Your Offer .
     </h1>
  </div>
  <div class="container">
-    <form method="POST" action="{{url('offer\store2')}}">
+   {{--  <form method="POST" action="{{url('offers\store')}}"> --}}
+    <form method="POST" action="{{route('offers.store')}}">
         @csrf
     {{--  <input name="_token" value="{{csrf_token()}}"> --}}
         <div class="form-group">
@@ -19,7 +20,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Offer Details</label>
-          <input type="text-area" class="form-control" name="details" placeholder="Enter The Details">
+          <input type="textarea" class="form-control" name="details" placeholder="Enter The Details">
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">

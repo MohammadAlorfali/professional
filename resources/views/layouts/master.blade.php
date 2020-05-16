@@ -1,4 +1,6 @@
 @include('includs.header')
     @yield('main')
     @yield('about')
+    @yield('offer')
+    @yield('offerMessages')
 @include('includs.footer')

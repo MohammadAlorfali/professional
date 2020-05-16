@@ -12,21 +12,21 @@
  */
 
 /* Route::get('/', function () {
-    $data = [];
-    $data['age'] = 21;
-    $data['name'] = 'Mohammad AlOrfali';
-    return view('welcome', $data);
-    //return view('welcome')->with(['name'=>'Mohammad AlOrfali','age'=>21]);
+$data = [];
+$data['age'] = 21;
+$data['name'] = 'Mohammad AlOrfali';
+return view('welcome', $data);
+//return view('welcome')->with(['name'=>'Mohammad AlOrfali','age'=>21]);
 }); */
 Route::get('/', 'Front\UserController@getIndex');
 
 Route::get('/test/{id?}', function ($id) {
     return $id;
 })->name('a');
-Route::get('/landing',function(){
+Route::get('/landing', function () {
     return view('landing');
 });
-Route::get('/about',function(){
+Route::get('/about', function () {
     return view('about');
 });
 Route::namespace ('Front')->group(function () {
@@ -68,6 +68,13 @@ Route::get('news/{id}/edit','NewsController@edit');
 Route::get('update/{id}','NewsController@update');
 Route::get('news/{id}','NewsController@delete'); */
 
-Auth::routes(['verify'=>true]);
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+Route::group(['prefix' => 'offers'], function () {
+    //Route::get('store','CrudController@store');
+
+    Route::post('store2','CrudController@store2') -> name('offers.store');
+});
+Route::get('offerscreate','CrudController@create');

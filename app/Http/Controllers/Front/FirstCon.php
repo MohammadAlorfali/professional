@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -20,5 +21,10 @@ class FirstCon extends Controller
     public function showName()
     {
         return 'Hi Everuone';
+    }
+
+    public function getOffers(){
+       // return Offer::get(); //select all cols
+        return Offer::select('id','name')->get();
     }
 }
