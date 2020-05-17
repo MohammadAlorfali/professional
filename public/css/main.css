@@ -30,7 +30,7 @@ span{
     color: #003c64;
 }
 .navbar-brand span:last-child{
-    color: #ee4343; 
+    color: #ee4343;
 }
 .navbar-nav .nav-link{
     font-size: 16px;
@@ -292,7 +292,7 @@ span{
     top: 0;
     background-color: rgba(0,0,0,.6);
     z-index: 2;
-} 
+}
 .testimonials .carousel-inner{
     position: relative;
     z-index: 5;
@@ -374,7 +374,7 @@ span{
     color: white;
     font-weight: bold;
     border: #ee4343 1px solid;
-    margin: 20px 0 50px 0; 
+    margin: 20px 0 50px 0;
 }
 .pricing-table  .row .card-text{
     color: #8a8f8f;
@@ -397,7 +397,7 @@ span{
     color: white;
     font-weight: bold;
     border: #003c64 1px solid;
-    margin: 20px 0 50px 0; 
+    margin: 20px 0 50px 0;
 }
 .pricing-table  .card.corporate p span{
     font-size: 19px;
@@ -408,7 +408,7 @@ span{
 /* Start Choose Us */
 .choose-us{
     background-color: #003c64;
-   
+
 }
 .choose-us img{
   max-width: 100%;
@@ -464,7 +464,7 @@ span{
     background-color: #ee4343;
     padding: 55px 20px;
     color:white;
-    
+
 }
 .contact input{
     background-color: #ee4343;
@@ -479,7 +479,7 @@ span{
 .contact p{
     font-size: 19px;
     font-weight: normal;
-    
+
 }
 /* End Contact US */
 
@@ -539,6 +539,8 @@ span{
     margin-bottom: 20px;
 }
 /* End Footer */
+
+
 
 @media(max-width: 576px){
     .upper-bar .info:first-child{

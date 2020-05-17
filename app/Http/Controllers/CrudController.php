@@ -37,26 +37,29 @@ class CrudController extends Controller
         $rules = $this->get_rules();
         $messages = $this->get_messages();
         //validate data befor insert to database .
-        $valid = Validator::make($req->all(),$rules,$messages);
-        if($valid -> fails()){
-            return $valid->errors()->first();
+        $valid = Validator::make($req->all(), $rules, $messages);
+        if ($valid->fails()) {
+            return redirect()->back()->withErrors($valid)->withInputs($req->all());
         }
-        Offer::create([
+
+            Offer::create([
             'name' => $req->name,
             'price' => $req->price,
             'details' => $req->details,
         ]);
-        return 'Saved Successfuly';
+        return redirect()->back()->with(['success'=>'تم إضاف العرض بنجاح']);
     }
 
-    protected function get_rules(){
+    protected function get_rules()
+    {
         return [
-            'name'=>'required|max:100|unique:offers,name',
-            'price'=>'required|numeric',
-            'details'=>'required',
+            'name' => 'required|max:100|unique:offers,name',
+            'price' => 'required|numeric',
+            'details' => 'required',
         ];
     }
-    protected function get_messages(){
+    protected function get_messages()
+    {
         return [
             'name.reaquired' => 'اسم العرض مطلوب',
             'name.unique' => 'اسم العرض موجود',
