@@ -2,5 +2,5 @@
     @yield('main')
     @yield('about')
     @yield('offer')
-    @yield('offerMessages')
+    @yield('showOffer')
 @include('includs.footer')

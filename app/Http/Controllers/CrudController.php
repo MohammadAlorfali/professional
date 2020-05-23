@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OfferRequest;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
+use LaravelLocalization;
 
 class CrudController extends Controller
 {
@@ -15,7 +17,15 @@ class CrudController extends Controller
     //without putting middleware in the routes .
     public function __construct()
     {
-        // $this->middleware('auth');//->except(''); if you want except functoin from the class you can write that .
+         $this->middleware('auth');//->except(''); if you want except functoin from the class you can write that .
+    }
+
+    public function show(){
+        $offers = Offer::select('id','price',
+        'name_'.LaravelLocalization::getCurrentLocale().' as name',
+        'details_'.LaravelLocalization::getCurrentLocale(). ' as details'
+        )->get();
+        return view('offers.show',compact('offers'));
     }
 
     public function store()
@@ -32,25 +42,26 @@ class CrudController extends Controller
         return view('offers.create');
     }
 
-    public function store2(Request $req)
+    public function store2(OfferRequest $req)
     {
-        $rules = $this->get_rules();
+        /* $rules = $this->get_rules();
         $messages = $this->get_messages();
         //validate data befor insert to database .
         $valid = Validator::make($req->all(), $rules, $messages);
         if ($valid->fails()) {
             return redirect()->back()->withErrors($valid)->withInputs($req->all());
-        }
-
+        } */
             Offer::create([
-            'name' => $req->name,
+            'name_ar' => $req->name_ar,
+            'name_en' => $req->name_en,
             'price' => $req->price,
-            'details' => $req->details,
+            'details_ar' => $req->details_ar,
+            'details_en' => $req->details_en,
         ]);
         return redirect()->back()->with(['success'=>'تم إضاف العرض بنجاح']);
     }
 
-    protected function get_rules()
+    /* protected function get_rules()
     {
         return [
             'name' => 'required|max:100|unique:offers,name',
@@ -61,11 +72,12 @@ class CrudController extends Controller
     protected function get_messages()
     {
         return [
-            'name.reaquired' => 'اسم العرض مطلوب',
-            'name.unique' => 'اسم العرض موجود',
-            'price.numeric' => 'سعر العرض يجب أن يكون أرقام',
-            'price.required' => 'السعر مطلوب',
+            'name.required' => __('messages.offer name required'),
+            'name.unique' =>  __('messages.offer name must be unique'),
+            'price.numeric' =>  __('messages.offer price must be numeric'),
+            'price.required' => __('messages.offer price required'),
+            'details.required' => __('messages.offer details required'),
         ];
-    }
+    } */
 
 }

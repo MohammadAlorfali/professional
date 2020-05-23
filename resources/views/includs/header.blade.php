@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Document</title>
     <title>Bootstrap 4 Design Number 1</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href={{ asset('css/bootstrap.min.css')}}>
+    <link rel="stylesheet" href={{ asset('css/font-awesome.min.css')}}>
+    <link rel="stylesheet" href={{ asset('css/main.css')}}>
 </head>
 
 <body>
@@ -40,7 +40,6 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item ">
@@ -53,11 +52,13 @@
                             <a class="nav-link" href="#">Work</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">Content</a>
                         </li>
+                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
+                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
